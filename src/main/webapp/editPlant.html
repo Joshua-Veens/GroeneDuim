@@ -1,11 +1,11 @@
-<!-- addPlant.html -->
+<!-- editPlant.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Add New Plant</title>
-  <script type="module" crossorigin src="/assets/addplant-BTbYgSwq.js"></script>
+  <title>Edit Plant</title>
+  <script type="module" crossorigin src="/assets/editplant-t1p1PF86.js"></script>
   <link rel="modulepreload" crossorigin href="/assets/style-Htvu6hAP.js">
   <link rel="modulepreload" crossorigin href="/assets/loginService-C4Qp4EcO.js">
   <link rel="stylesheet" crossorigin href="/assets/style-BuMTAQds.css">
@@ -25,15 +25,22 @@
         <span id="user"></span>
         <button type="submit">Logout</button>
     </form>
-
   </header>
+  
   <div class="secondary-header">
-    <h1>Add New Plant</h1>
+    <h1>Edit Plant</h1>
   </div>
+
   <div class="container">
-    <form id="add-plant-form" class="plant-info">
+    <form id="search-plant-form" class="plant-info">
+      <label for="search-id">Search by ID:</label>
+      <input type="text" id="search-id" name="search-id" required>
+      <button type="button" id="search-plant-button">Search</button>
+    </form>
+
+    <form id="edit-plant-form" class="plant-info" style="display: none;">
       <label for="id">ID:</label>
-      <input type="text" id="id" name="id" required>
+      <input type="text" id="id" name="id" required readonly>
       
       <label for="scientific_name">Scientific Name:</label>
       <input type="text" id="scientific_name" name="scientific_name" required>
@@ -59,7 +66,7 @@
       <label for="water_needs">Water Needs:</label>
       <input type="text" id="water_needs" name="water_needs" required>
       
-      <button type="submit">Add Plant</button>
+      <button type="submit">Save Changes</button>
     </form>
   </div>
 </body>

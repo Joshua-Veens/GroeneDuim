@@ -31,6 +31,7 @@ public class PlantResource {
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
+    @RolesAllowed("admin")
     public Response addPlant(@Context ContainerRequestContext context, Plant plant) {
         MySecurityContext securityContext = (MySecurityContext) context.getSecurityContext();
         System.out.println(securityContext.getUserPrincipal().getName() + " is adding plant: " + plant.getId());
@@ -44,4 +45,42 @@ public class PlantResource {
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Failed to save plant").build();
         }
     }
+
+    @PUT
+    @Path("/{id}")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    @RolesAllowed("admin")
+    public Response updatePlant(@Context ContainerRequestContext context, @PathParam("id") String id, Plant updatedPlant) {
+        MySecurityContext securityContext = (MySecurityContext) context.getSecurityContext();
+        System.out.println(securityContext.getUserPrincipal().getName() + " is updating plant: " + id);
+        try {
+            PlantService.updatePlant(id, updatedPlant);
+            return Response.ok(updatedPlant).build();
+        } catch (IllegalArgumentException e) {
+            return Response.status(Response.Status.NOT_FOUND).entity(e.getMessage()).build();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Failed to update plant").build();
+        }
+    }
+
+    @DELETE
+    @Path("/{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    @RolesAllowed("admin")
+    public Response deletePlant(@Context ContainerRequestContext context, @PathParam("id") String id) {
+        MySecurityContext securityContext = (MySecurityContext) context.getSecurityContext();
+        System.out.println(securityContext.getUserPrincipal().getName() + " is removing plant: " + id);
+        try {
+            PlantService.removePlant(id);
+            return Response.ok().build();
+        } catch (IllegalArgumentException e) {
+            return Response.status(Response.Status.NOT_FOUND).entity(e.getMessage()).build();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Failed to remove plant").build();
+        }
+    }
+
 }

@@ -18,7 +18,6 @@ public class AuthenticationResource {
     @Consumes(MediaType.APPLICATION_JSON)
     @Path("/login")
     public Response authenticateUser(LogonRequest logonRequest) {
-        System.out.println("HIER");
         try {
             String role = User.validateLogin(logonRequest.username, logonRequest.password);
             String token = createToken(logonRequest.username, role);

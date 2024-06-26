@@ -2,7 +2,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const plantId = new URLSearchParams(window.location.search).get("id");
 
     if (plantId) {
-      fetch(`/api/plants/${plantId}`)
+      fetch(`/api/plants/${plantId}`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+      })
         .then(response => response.json())
         .then(data => {
           document.getElementById("plant-name").textContent = data.scientific_name;

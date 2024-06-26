@@ -33,7 +33,36 @@ document.forms.logout.addEventListener('submit', e => {
     });
 });
 
-document.getElementById("add-plant-form").addEventListener("submit", function(event) {
+document.getElementById("search-plant-button").addEventListener("click", function() {
+    const plantId = document.getElementById("search-id").value;
+    
+    fetch(`/api/plants/${plantId}`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            "Authorization": "Bearer " + window.localStorage.getItem("token")
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        document.getElementById("id").value = data.id;
+        document.getElementById("scientific_name").value = data.scientific_name;
+        document.getElementById("description").value = data.description;
+        document.getElementById("bloom_time").value = data.bloom_time;
+        document.getElementById("height").value = data.height;
+        document.getElementById("width").value = data.width;
+        document.getElementById("sun_requirements").value = data.sun_requirements;
+        document.getElementById("soil_type").value = data.soil_type;
+        document.getElementById("water_needs").value = data.water_needs;
+        document.getElementById("edit-plant-form").style.display = "block";
+    })
+    .catch(error => {
+        console.error("Error fetching plant:", error);
+        alert("Plant not found");
+    });
+});
+
+document.getElementById("edit-plant-form").addEventListener("submit", function(event) {
     event.preventDefault();
     
     const plantData = {
@@ -48,8 +77,8 @@ document.getElementById("add-plant-form").addEventListener("submit", function(ev
         water_needs: document.getElementById("water_needs").value
     };
 
-    fetch('/api/plants', {
-        method: 'POST',
+    fetch(`/api/plants/${plantData.id}`, {
+        method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
             "Authorization": "Bearer " + window.localStorage.getItem("token")
@@ -57,22 +86,19 @@ document.getElementById("add-plant-form").addEventListener("submit", function(ev
         body: JSON.stringify(plantData)
     })
     .then(response => {
-        if (response.status === 201) {
+        if (response.status === 200) {
             return response.json();
-        } else if (response.status === 409) {
-            return response.text().then(text => { throw new Error(text); });
-        } else if (response.status === 403) {
-            return new Error("You are not authorized to add a plant.");
         } else {
-            throw new Error("Failed to add plant.");
+            throw new Error("Failed to update plant.");
         }
     })
     .then(data => {
-        alert("Plant added!");
-        document.getElementById("add-plant-form").reset();
+        alert("Plant updated successfully");
+        document.getElementById("edit-plant-form").reset();
+        document.getElementById("edit-plant-form").style.display = "none";
     })
     .catch(error => {
-        console.error("Error adding plant:", error);
+        console.error("Error updating plant:", error);
         alert(error.message);
     });
 });
