@@ -5,14 +5,26 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Add New Plant</title>
-  <script type="module" crossorigin src="/assets/addplant-BiYRO0kx.js"></script>
-  <link rel="modulepreload" crossorigin href="/assets/style-D8dTFR_9.js">
-  <link rel="stylesheet" crossorigin href="/assets/style-COAmJkbR.css">
+  <script type="module" crossorigin src="/assets/addplant-OQLMDHch.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/style-CrNA9BGr.js">
+  <link rel="stylesheet" crossorigin href="/assets/style-jkptqOVM.css">
 </head>
 <body>
   <header>
     <img src="/images/devlieren-logo.png" alt="Logo">
     <a href="https://www.devlieren.nl" class="button">Bezoek onze website</a>
+    
+    <form name="login" class="login-form">
+        <input type="text" name="username" placeholder="Username" required>
+        <input type="password" name="password" placeholder="Password" required>
+        <button type="submit">Login</button>
+    </form>
+
+    <form name="logout" class="logout-form" style="display: none;">
+        <span id="user"></span>
+        <button type="submit">Logout</button>
+    </form>
+
   </header>
   <div class="secondary-header">
     <h1>Add New Plant</h1>

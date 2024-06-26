@@ -1,4 +1,4 @@
-import"./style-D8dTFR_9.js";document.addEventListener("DOMContentLoaded",()=>{const n=new URLSearchParams(window.location.search).get("id");n?fetch(`/api/plants/${n}`).then(e=>e.json()).then(e=>{document.getElementById("plant-name").textContent=e.scientific_name;const t=`
+import"./style-CrNA9BGr.js";document.addEventListener("DOMContentLoaded",()=>{const n=new URLSearchParams(window.location.search).get("id");n?fetch(`/api/plants/${n}`).then(e=>e.json()).then(e=>{document.getElementById("plant-name").textContent=e.scientific_name;const t=`
             <h1>Planteninformatie</h1>
             <p><strong>Wetenschappelijke naam:</strong> ${e.scientific_name}</p>
             <p><strong>Beschrijving:</strong> ${e.description}</p>
@@ -11,4 +11,4 @@ import"./style-D8dTFR_9.js";document.addEventListener("DOMContentLoaded",()=>{co
               <li><strong>Waterbehoefte:</strong> ${e.water_needs}</li>
             </ul>
           `;document.getElementById("plant-info").innerHTML=t}).catch(e=>{console.error("Error fetching plant data:",e)}):document.getElementById("plant-info").innerHTML="<p>Plant ID not specified in the URL.</p>"});
-//# sourceMappingURL=main-DcYIy29n.js.map
+//# sourceMappingURL=main-DTMELLCN.js.map

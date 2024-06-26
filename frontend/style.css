@@ -30,6 +30,34 @@ header a.button {
   border-radius: 5px;
 }
 
+header .login-form,
+header .logout-form {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 20px;
+}
+
+header input[type="text"],
+header input[type="password"] {
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+header button {
+    background-color: rgb(51, 51, 139);
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+header button:hover {
+    background-color: #4444cc;
+}
+
 .secondary-header {
   background-color: #33338B;
   padding: 20px;
@@ -49,8 +77,8 @@ header a.button {
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   color: #333;
-  width: calc(100% - 40px); /* Full width with some padding */
-  margin: 20px auto; /* Center with margin */
+  width: calc(100% - 40px); 
+  margin: 20px auto; 
 }
 
 .plant-info h1 {

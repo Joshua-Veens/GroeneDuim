@@ -38,4 +38,14 @@
   "sun_requirements" : "test",
   "soil_type" : "test",
   "water_needs" : "test"
+}, {
+  "id" : "test1",
+  "scientific_name" : "test",
+  "description" : "test",
+  "bloom_time" : "test",
+  "height" : "test",
+  "width" : "test",
+  "sun_requirements" : "tset",
+  "soil_type" : "tset",
+  "water_needs" : "test"
 } ]

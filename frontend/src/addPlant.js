@@ -1,3 +1,38 @@
+import LoginService from './loginService.js';
+
+let service = new LoginService();
+
+function refresh() {
+    if (service.isLoggedIn()) {
+        document.forms.login.style = "display:none";
+        document.forms.logout.style = "display:block";
+        service.getUser().then(user => {
+            if (user) {
+                document.getElementById('user').textContent = user.username;
+            }
+        });
+    } else {
+        document.forms.logout.style = "display:none";
+        document.forms.login.style = "display:block";
+    }
+}
+
+document.forms.login.addEventListener('submit', e => {
+    e.preventDefault();
+    service.login(document.forms.login.username.value, document.forms.login.password.value).then(() => {
+        window.location.reload();
+    }).catch(error => {
+        alert(error);
+    });
+});
+
+document.forms.logout.addEventListener('submit', e => {
+    e.preventDefault();
+    service.logout().then(() => {
+        window.location.reload();
+    });
+});
+
 document.getElementById("add-plant-form").addEventListener("submit", function(event) {
     event.preventDefault();
     
@@ -16,7 +51,8 @@ document.getElementById("add-plant-form").addEventListener("submit", function(ev
     fetch('/api/plants', {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            "Authorization": "Bearer " + window.localStorage.getItem("token")
         },
         body: JSON.stringify(plantData)
     })
@@ -25,16 +61,26 @@ document.getElementById("add-plant-form").addEventListener("submit", function(ev
             return response.json();
         } else if (response.status === 409) {
             return response.text().then(text => { throw new Error(text); });
+        } else if (response.status === 403) {
+            return new Error("You are not authorized to add a plant.");
         } else {
             throw new Error("Failed to add plant.");
         }
     })
     .then(data => {
-        alert("Plant added successfully!");
         document.getElementById("add-plant-form").reset();
     })
     .catch(error => {
         console.error("Error adding plant:", error);
         alert(error.message);
     });
+});
+
+refresh();
+
+service.getUser().then(user => {
+    if (!user) {
+        service.logout();
+    }
+    refresh();
 });

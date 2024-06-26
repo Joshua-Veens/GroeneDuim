@@ -3,6 +3,7 @@ package nl.devlieren.webservices;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import nl.devlieren.models.Plant;
 
+import javax.annotation.security.RolesAllowed;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
@@ -43,6 +44,7 @@ public class PlantService {
         return getPlantById(id) != null;
     }
 
+    @RolesAllowed("admin")
     public static void addPlant(Plant newPlant) throws IOException {
         if (plantExists(newPlant.getId())) {
             throw new IllegalArgumentException("Plant with ID " + newPlant.getId() + " already exists.");
@@ -51,9 +53,9 @@ public class PlantService {
         savePlantsToFile();
     }
 
+
     private static void savePlantsToFile() throws IOException {
         ObjectMapper mapper = new ObjectMapper();
         mapper.writerWithDefaultPrettyPrinter().writeValue(jsonFile, plants);
     }
-
 }

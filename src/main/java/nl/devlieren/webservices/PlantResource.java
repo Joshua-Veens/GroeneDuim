@@ -1,9 +1,13 @@
 package nl.devlieren.webservices;
 
 import nl.devlieren.models.Plant;
+import nl.devlieren.security.MySecurityContext;
 import nl.devlieren.webservices.PlantService;
 
+import javax.annotation.security.RolesAllowed;
 import javax.ws.rs.*;
+import javax.ws.rs.container.ContainerRequestContext;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.io.IOException;
@@ -27,7 +31,9 @@ public class PlantResource {
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response addPlant(Plant plant) {
+    public Response addPlant(@Context ContainerRequestContext context, Plant plant) {
+        MySecurityContext securityContext = (MySecurityContext) context.getSecurityContext();
+        System.out.println(securityContext.getUserPrincipal().getName() + " is adding plant: " + plant.getId());
         try {
             PlantService.addPlant(plant);
             return Response.status(Response.Status.CREATED).entity(plant).build();
