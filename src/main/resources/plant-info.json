@@ -1,0 +1,35 @@
+[
+  {
+    "id": "lavandula-hidcote",
+    "scientific_name": "Lavandula angustifolia 'Hidcote'",
+    "description": "Lavandula 'Hidcote' is een compacte, aromatische, groenblijvende struik die bekend staat om zijn diep violet-blauwe bloemaren en smalle, grijsgroene bladeren. Deze variëteit is bijzonder populair in tuinen vanwege zijn winterhardheid en levendige kleur.",
+    "bloom_time": "Late lente tot zomer",
+    "height": "30 tot 60 cm",
+    "width": "30 tot 60 cm",
+    "sun_requirements": "Volle zon",
+    "soil_type": "Goed doorlatende, zanderige of grindachtige bodem",
+    "water_needs": "Laag, droogtetolerant eenmaal gevestigd"
+  },
+  {
+    "id": "geranium-rozanne",
+    "scientific_name": "Geranium 'Rozanne'",
+    "description": "Geranium 'Rozanne' is een populaire vaste plant die bekend staat om zijn langdurige bloei en prachtige blauwe bloemen met een wit centrum. Deze plant heeft een compacte groeiwijze en vormt een aantrekkelijke bodembedekker.",
+    "bloom_time": "Late lente tot vroege herfst",
+    "height": "30 tot 60 cm",
+    "width": "60 tot 90 cm",
+    "sun_requirements": "Volle zon tot halfschaduw",
+    "soil_type": "Goed doorlatende, vruchtbare grond",
+    "water_needs": "Gemiddeld, consistent vochtig houden"
+  },
+  {
+    "id": "gaura-lindheimeri",
+    "scientific_name": "Gaura lindheimeri",
+    "description": "Gaura lindheimeri is een vaste plant met lange, slanke stelen en delicate, vlinderachtige bloemen die bloeien van de lente tot de herfst. De bloemen zijn meestal wit of roze en geven een luchtige, sierlijke uitstraling aan tuinen.",
+    "bloom_time": "Lente tot herfst",
+    "height": "60 tot 150 cm",
+    "width": "45 tot 60 cm",
+    "sun_requirements": "Volle zon",
+    "soil_type": "Goed doorlatende, zanderige of grindachtige bodem",
+    "water_needs": "Gemiddeld, droogtetolerant eenmaal gevestigd"
+  }
+]
