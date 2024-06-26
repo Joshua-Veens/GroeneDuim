@@ -7,8 +7,10 @@ export default defineConfig({
         rollupOptions:{
             input: {
                 main: resolve(__dirname, 'index.html'),
-                addplant: resolve(__dirname, 'addPlant.html')
-                // to add more html pages....see FEP1 boilerplate section build&deploy
+                login: resolve(__dirname, 'login.html'),
+                addplant: resolve(__dirname, 'addPlant.html'),
+                editplant: resolve(__dirname, 'editplant.html'),
+                removeplant: resolve(__dirname, 'removeplant.html')
             },
         },
         outDir: "../src/main/webapp/"

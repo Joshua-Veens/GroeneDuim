@@ -28,14 +28,4 @@
   "sun_requirements" : "Volle zon",
   "soil_type" : "Goed doorlatende, zanderige of grindachtige bodem",
   "water_needs" : "Gemiddeld, droogtetolerant eenmaal gevestigd"
-}, {
-  "id" : "test",
-  "scientific_name" : "test",
-  "description" : "test",
-  "bloom_time" : "test",
-  "height" : "test",
-  "width" : "test",
-  "sun_requirements" : "test",
-  "soil_type" : "test",
-  "water_needs" : "test"
 } ]

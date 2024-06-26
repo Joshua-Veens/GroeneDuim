@@ -42,24 +42,29 @@ public class AuthenticationResource {
                 User user = User.getUserByName(username);
 
                 if (claims.getExpiration().before(Calendar.getInstance().getTime())) {
+//                    System.out.println("Token has expired");
                     return Response.status(Response.Status.UNAUTHORIZED).entity(Map.of("error", "Token has expired")).build();
                 }
                 if (user != null) {
+//                    System.out.println("Succes!");
                     return Response.ok(Map.of("username", username, "role", role)).build();
                 } else {
+//                    System.out.println("Invalid token");
                     return Response.status(Response.Status.UNAUTHORIZED).entity(Map.of("error", "Invalid token")).build();
                 }
             } catch (JwtException | IllegalArgumentException e) {
+//                System.out.println("Invalid token");
                 return Response.status(Response.Status.UNAUTHORIZED).entity(Map.of("error", "Invalid token")).build();
             }
         } else {
+//            System.out.println("Authorization header must be provided");
             return Response.status(Response.Status.UNAUTHORIZED).entity(Map.of("error", "Authorization header must be provided")).build();
         }
     }
 
     private String createToken(String username, String role) throws JwtException {
         Calendar expiration = Calendar.getInstance();
-        expiration.add(Calendar.MINUTE, 30);
+        expiration.add(Calendar.MINUTE, 60);
 
         return Jwts.builder()
                 .setSubject(username)
@@ -69,4 +74,3 @@ public class AuthenticationResource {
                 .compact();
     }
 }
-

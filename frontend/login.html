@@ -1,0 +1,35 @@
+<!-- login.html -->
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Login </title>
+        <script type="module" crossorigin src="/src/login.js"></script>
+        <link rel="stylesheet" crossorigin href="style.css">
+    </head>
+    <body>
+    <header>
+        <img src="/images/devlieren-logo.png" alt="Logo">
+        
+        <form name="login" class="login-form">
+            <input type="text" name="username" placeholder="Username" required>
+            <input type="password" name="password" placeholder="Password" required>
+            <button type="submit">Login</button>
+        </form>
+
+        <form name="logout" class="logout-form" style="display: none;">
+            <span id="user"></span>
+            <button type="submit">Logout</button>
+        </form>
+    </header>
+
+        <div class="gotobuttons">
+            <div id="plant-actions" style="display: none;">
+                <a href ="addPlant.html" id="add-plant-button" class="button">Plant toevoegen</a>
+                <a href ="editPlant.html" id="edit-plant-button" class="button">Plant bewerken</a>
+                <a href ="removePlant.html" id="remove-plant-button" class="button">Plant verwijderen</a>
+            </div>
+        </div>
+    </body>  
+</html>

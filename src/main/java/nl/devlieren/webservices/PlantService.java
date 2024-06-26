@@ -1,10 +1,14 @@
 package nl.devlieren.webservices;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import nl.devlieren.models.GenerateQRCode;
 import nl.devlieren.models.Plant;
 
+import javax.annotation.security.RolesAllowed;
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.List;
 
 public class PlantService {
@@ -17,6 +21,9 @@ public class PlantService {
             System.out.println("File path: " + jsonFile.getAbsolutePath()); // Print absolute path for debugging
             plants = mapper.readValue(jsonFile, mapper.getTypeFactory().constructCollectionType(List.class, Plant.class));
             System.out.println("Plants loaded: " + plants.size()); // Print number of plants loaded
+            for (Plant plant : plants){
+                GenerateQRCode.generateQRCode(plant.getId());
+            }
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println("Failed to load plants from JSON file: " + e.getMessage());
@@ -39,7 +46,7 @@ public class PlantService {
         return null;
     }
 
-    public static boolean plantExists(String id) {
+    private static boolean plantExists(String id) {
         return getPlantById(id) != null;
     }
 
@@ -49,6 +56,7 @@ public class PlantService {
         }
         plants.add(newPlant);
         savePlantsToFile();
+        GenerateQRCode.generateQRCode(newPlant.getId());
     }
 
     private static void savePlantsToFile() throws IOException {
@@ -56,4 +64,32 @@ public class PlantService {
         mapper.writerWithDefaultPrettyPrinter().writeValue(jsonFile, plants);
     }
 
+    public static void updatePlant(String id, Plant updatedPlant) throws IOException {
+        Plant existingPlant = getPlantById(id);
+        if (existingPlant == null) {
+            throw new IllegalArgumentException("Plant with ID " + id + " does not exist.");
+        }
+
+        existingPlant.setScientific_name(updatedPlant.getScientific_name());
+        existingPlant.setDescription(updatedPlant.getDescription());
+        existingPlant.setBloom_time(updatedPlant.getBloom_time());
+        existingPlant.setHeight(updatedPlant.getHeight());
+        existingPlant.setWidth(updatedPlant.getWidth());
+        existingPlant.setSun_requirements(updatedPlant.getSun_requirements());
+        existingPlant.setSoil_type(updatedPlant.getSoil_type());
+        existingPlant.setWater_needs(updatedPlant.getWater_needs());
+
+        savePlantsToFile();
+    }
+
+    public static void removePlant(String id) throws IOException {
+        Plant plantToRemove = getPlantById(id);
+        if (plantToRemove == null) {
+            throw new IllegalArgumentException("Plant with ID " + id + " does not exist.");
+        }
+        System.out.println("Removing " + plantToRemove.getId());
+
+        plants.remove(plantToRemove);
+        savePlantsToFile();
+    }
 }
