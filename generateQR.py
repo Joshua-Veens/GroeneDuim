@@ -1,7 +1,9 @@
 import qrcode
+import urllib.parse
+import os
+import sys
 
-def generate_qr_code(url, file_name):
-    # Generate QR code instance
+def generate_qr_code(url, folder_path):
     qr = qrcode.QRCode(
         version=1,
         error_correction=qrcode.constants.ERROR_CORRECT_L,
@@ -9,20 +11,33 @@ def generate_qr_code(url, file_name):
         border=4,
     )
     
-    # Add URL to QR code instance
     qr.add_data(url)
     qr.make(fit=True)
     
-    # Generate QR code image
     img = qr.make_image(fill='black', back_color='white')
+    
+    if not os.path.exists(folder_path):
+        os.makedirs(folder_path)
+    
+    parsed_url = urllib.parse.urlparse(url)
+    query = parsed_url.query
+    query_params = urllib.parse.parse_qs(query)
+    plant_name = query_params.get('id', [''])[0]
+    file_name = os.path.join(folder_path, f"{plant_name}.png")
     
     # Save QR code image to a file
     img.save(file_name)
+    
+    return file_name
 
 if __name__ == '__main__':
-    url = input("Enter the URL for QR code generation: ")
-    file_name = input("Enter the file name for the QR code image (e.g., qr_code.png): ")
+    if len(sys.argv) < 2:
+        print("Usage: python generate_qr.py <plant_name>")
+        sys.exit(1)
+        
+    url = "http://62.45.248.146:8080/index.html?id=" + sys.argv[1]
     
-    generate_qr_code(url, file_name)
+    folder_path = "./qrcodes"  # Specify the folder where QR codes should be saved
     
-    print(f"QR code saved as {file_name}")
+    file_name = generate_qr_code(url, folder_path)
+    print(f"QR code for plant saved as {file_name}")

@@ -4,15 +4,16 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import nl.devlieren.models.Plant;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
-public class PlantResource {
+public class PlantService {
     private static List<Plant> plants;
+    private static File jsonFile = new File("C:/Users/joshu/OneDrive - Stichting Hogeschool Utrecht/SD Minor/IPASS/GroeneDuim/src/main/resources/plant-info.json");
 
     static {
         try {
             ObjectMapper mapper = new ObjectMapper();
-            File jsonFile = new File("C:/Users/joshu/OneDrive - Stichting Hogeschool Utrecht/SD Minor/IPASS/GroeneDuim/src/main/resources/plant-info.json");
             System.out.println("File path: " + jsonFile.getAbsolutePath()); // Print absolute path for debugging
             plants = mapper.readValue(jsonFile, mapper.getTypeFactory().constructCollectionType(List.class, Plant.class));
             System.out.println("Plants loaded: " + plants.size()); // Print number of plants loaded
@@ -37,4 +38,22 @@ public class PlantResource {
         System.out.println("Plant is not in list");
         return null;
     }
+
+    public static boolean plantExists(String id) {
+        return getPlantById(id) != null;
+    }
+
+    public static void addPlant(Plant newPlant) throws IOException {
+        if (plantExists(newPlant.getId())) {
+            throw new IllegalArgumentException("Plant with ID " + newPlant.getId() + " already exists.");
+        }
+        plants.add(newPlant);
+        savePlantsToFile();
+    }
+
+    private static void savePlantsToFile() throws IOException {
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.writerWithDefaultPrettyPrinter().writeValue(jsonFile, plants);
+    }
+
 }

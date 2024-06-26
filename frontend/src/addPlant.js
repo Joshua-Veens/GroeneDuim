@@ -20,13 +20,21 @@ document.getElementById("add-plant-form").addEventListener("submit", function(ev
         },
         body: JSON.stringify(plantData)
     })
-    .then(response => response.json())
+    .then(response => {
+        if (response.status === 201) {
+            return response.json();
+        } else if (response.status === 409) {
+            return response.text().then(text => { throw new Error(text); });
+        } else {
+            throw new Error("Failed to add plant.");
+        }
+    })
     .then(data => {
         alert("Plant added successfully!");
         document.getElementById("add-plant-form").reset();
     })
     .catch(error => {
         console.error("Error adding plant:", error);
-        alert("Failed to add plant.");
+        alert(error.message);
     });
 });
