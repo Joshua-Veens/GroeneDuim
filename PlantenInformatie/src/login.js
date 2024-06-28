@@ -3,12 +3,12 @@ import LoginService from './loginService.js';
 let service = new LoginService();
 
 function refresh() {
-    const plantActions = document.getElementById('plant-actions');
+    const gotobuttons = document.getElementById('gotobuttons');
 
     if (service.isLoggedIn()) {
         document.forms.login.style = "display:none";
         document.forms.logout.style = "display:block";
-        plantActions.style = "display:block";
+        gotobuttons.style = "display:block";
         
         service.getUser().then(user => {
             if (user) {
@@ -18,7 +18,7 @@ function refresh() {
     } else {
         document.forms.logout.style = "display:none";
         document.forms.login.style = "display:block";
-        plantActions.style = "display:none";
+        gotobuttons.style = "display:none";
     }
 }
 

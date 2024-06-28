@@ -1,16 +1,16 @@
-<!-- editPlant.html -->
+<!-- addPlant.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Edit Plant</title>
-  <script type="module" crossorigin src="/src/editPlant.js"></script>
+  <title>Add New Plant</title>
+  <script type="module" crossorigin src="/src/addPlant.js"></script>
   <link rel="stylesheet" crossorigin href="style.css">
 </head>
 <body>
   <header>
-    <a href ="login.html" id="Back" class="button">Back</a>
+    <a href ="/login.html" id="Back" class="button">Back</a>
     <img src="/images/devlieren-logo.png" alt="Logo">
     
     <form name="login" class="login-form">
@@ -23,22 +23,15 @@
         <span id="user"></span>
         <button type="submit">Logout</button>
     </form>
+
   </header>
-  
   <div class="secondary-header">
-    <h1>Edit Plant</h1>
+    <h1>Add New Plant</h1>
   </div>
-
   <div class="container">
-    <form id="search-plant-form" class="plant-info">
-      <label for="search-id">Search by ID:</label>
-      <input type="text" id="search-id" name="search-id" required>
-      <button type="button" id="search-plant-button">Search</button>
-    </form>
-
-    <form id="edit-plant-form" class="plant-info" style="display: none;">
+    <form id="add-plant-form" class="plant-info">
       <label for="id">ID:</label>
-      <input type="text" id="id" name="id" required readonly>
+      <input type="text" id="id" name="id" required>
       
       <label for="scientific_name">Scientific Name:</label>
       <input type="text" id="scientific_name" name="scientific_name" required>
@@ -64,7 +57,7 @@
       <label for="water_needs">Water Needs:</label>
       <input type="text" id="water_needs" name="water_needs" required>
       
-      <button type="submit">Save Changes</button>
+      <button type="submit">Add Plant</button>
     </form>
   </div>
 </body>

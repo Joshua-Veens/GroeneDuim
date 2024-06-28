@@ -15,7 +15,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class GenerateQRCode {
-
     public static void generateQRCode(String plantName) {
         // URL for QR code
         String url = "http://62.45.248.146:8080/index.html?id=" + plantName;
