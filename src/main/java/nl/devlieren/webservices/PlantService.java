@@ -4,11 +4,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import nl.devlieren.models.GenerateQRCode;
 import nl.devlieren.models.Plant;
 
-import javax.annotation.security.RolesAllowed;
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
