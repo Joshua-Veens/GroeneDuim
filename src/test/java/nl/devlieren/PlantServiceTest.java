@@ -2,19 +2,14 @@ package nl.devlieren;
 
 import nl.devlieren.models.Plant;
 import nl.devlieren.webservices.PlantService;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.io.File;
 import java.io.IOException;
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 public class PlantServiceTest {
 
-    private static final String JSON_FILE_PATH = "/opt/tomcat/plant-info.json";
-    
     @Test
     public void testAddPlant() throws IOException {
         Plant plant = new Plant("1", "ScientificName", "Description", "BloomTime", "Height", "Width", "SunRequirements", "SoilType", "WaterNeeds");

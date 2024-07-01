@@ -2,13 +2,10 @@ package nl.devlieren;
 
 import com.google.zxing.WriterException;
 import nl.devlieren.models.GenerateQRCode;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 
 import static org.junit.jupiter.api.Assertions.*;
 
