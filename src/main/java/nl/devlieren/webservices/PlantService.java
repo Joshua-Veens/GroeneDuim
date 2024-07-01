@@ -9,6 +9,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.List;
 
 public class PlantService {
@@ -113,4 +114,11 @@ public class PlantService {
             System.err.println("QR code file not found for plant ID: " + plantId);
         }
     }
+
+    //Load plants for testing purposes
+    public static void loadPlants() throws IOException {
+        plants = new ArrayList<>();
+        savePlantsToFile();
+    }
+
 }

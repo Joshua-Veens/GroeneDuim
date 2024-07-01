@@ -13,6 +13,9 @@ public class Plant {
 
     public Plant(){}
 
+    public Plant(String number, String scientificName, String description, String bloomTime, String height, String width, String sunRequirements, String soilType, String waterNeeds) {
+    }
+
     public String getId() {
         return id;
     }
