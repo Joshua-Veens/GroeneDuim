@@ -13,20 +13,25 @@ import java.util.List;
 
 public class PlantService {
     private static List<Plant> plants;
-    private static File jsonFile = new File("C:/Users/joshu/OneDrive - Stichting Hogeschool Utrecht/SD Minor/IPASS/GroeneDuim/src/main/resources/plant-info.json");
+    private static File jsonFile = new File("/opt/tomcat/plant-info.json");
 
     static {
         try {
             ObjectMapper mapper = new ObjectMapper();
-            System.out.println("File path: " + jsonFile.getAbsolutePath()); // Print absolute path for debugging
+            System.out.println("File path: " + jsonFile.getAbsolutePath());
             plants = mapper.readValue(jsonFile, mapper.getTypeFactory().constructCollectionType(List.class, Plant.class));
-            System.out.println("Plants loaded: " + plants.size()); // Print number of plants loaded
-            for (Plant plant : plants){
-                GenerateQRCode.generateQRCode(plant.getId());
-            }
+            System.out.println("Plants loaded: " + plants.size());
+            generateQRCodes();
+
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println("Failed to load plants from JSON file: " + e.getMessage());
+        }
+    }
+
+    public static void generateQRCodes(){
+        for (Plant plant : plants){
+            GenerateQRCode.generateQRCode(plant.getId());
         }
     }
 
@@ -57,6 +62,7 @@ public class PlantService {
         plants.add(newPlant);
         savePlantsToFile();
         GenerateQRCode.generateQRCode(newPlant.getId());
+        byte[] zipFileBytes = GenerateQRCode.generateZipFile();
     }
 
     private static void savePlantsToFile() throws IOException {
@@ -91,5 +97,20 @@ public class PlantService {
 
         plants.remove(plantToRemove);
         savePlantsToFile();
+
+        deleteQRCodeFile(plantToRemove.getId());
+    }
+
+    private static void deleteQRCodeFile(String plantId) {
+        File qrCodeFile = new File("/opt/tomcat/qrcodes/" + plantId + ".png");
+        if (qrCodeFile.exists()) {
+            if (qrCodeFile.delete()) {
+                System.out.println("Deleted QR code for plant ID: " + plantId);
+            } else {
+                System.err.println("Failed to delete QR code for plant ID: " + plantId);
+            }
+        } else {
+            System.err.println("QR code file not found for plant ID: " + plantId);
+        }
     }
 }

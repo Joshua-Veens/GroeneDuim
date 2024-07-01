@@ -10,7 +10,8 @@ export default defineConfig({
                 login: resolve(__dirname, 'login.html'),
                 addplant: resolve(__dirname, 'addPlant.html'),
                 editplant: resolve(__dirname, 'editplant.html'),
-                removeplant: resolve(__dirname, 'removeplant.html')
+                removeplant: resolve(__dirname, 'removeplant.html'),
+                cart: resolve(__dirname, 'cart.html')
             },
         },
         outDir: "../src/main/webapp/"

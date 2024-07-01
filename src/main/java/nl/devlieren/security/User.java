@@ -47,8 +47,7 @@ public class User implements Principal {
     }
 
     public static User getUserByName(String user) {
-        User gebruiker = users.stream().filter(u -> u.getName().equals(user)).findFirst().orElse(null);
-        return gebruiker;
+        return users.stream().filter(u -> u.getName().equals(user)).findFirst().orElse(null);
     }
 
     @Override

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="d3f33da2-626e-4a8a-9390-bfc07efed77e" name="UBUKAMA">
+        <fileTransfer accessType="SFTP" host="113.30.188.22" port="22" sshConfigId="45ba428d-dd4c-42a9-be8b-b23998ca3c9e" sshConfig="root@113.30.188.22:22 password">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" keepAliveTimeout="0" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

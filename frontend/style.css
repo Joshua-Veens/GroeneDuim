@@ -27,7 +27,9 @@ header a.button {
   color: white;
   background-color: rgb(51, 51, 139);
   padding: 10px 20px;
-  margin-right: 30px;
+  margin-top: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
   border: none;
   border-radius: 5px;
   font-size: 18px;
@@ -40,6 +42,9 @@ header button {
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  margin-top: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
 header a.button:hover {
@@ -54,6 +59,36 @@ header button:hover {
   background-color: #4444cc;
 }
 
+button:hover {
+  background-color: #4444cc;
+}
+
+.gotobuttons .button:hover{
+  background-color: #4444cc;
+}
+
+.gotobuttons button:hover{
+  background-color: #4444cc;
+}
+
+.gotobuttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.gotobuttons .button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  font-size: 18px;
+  padding: 15px 30px;
+  margin: 10px;
+  text-align: center;
+}
+
 .button {
   text-decoration: none;
   color: white;
@@ -64,21 +99,17 @@ header button:hover {
   cursor: pointer;
 }
 
-.gotobuttons {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-  margin-top: 20px;
-}
-
-.gotobuttons .button {
+.gotobuttons button {
+  text-decoration: none;
+  color: white;
   font-size: 18px;
-  padding: 15px 30px;
-  margin: 10px;
-  text-align: center;
+  background-color: rgb(51, 51, 139);
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-bottom: 10px;
 }
-
 
 header .login-form,
 header .logout-form {
@@ -172,6 +203,31 @@ header input[type="password"] {
   background-color: #4444cc;
 }
 
+.cart-item {
+  background-color: white;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  color: #333;
+  width: calc(100% - 40px); 
+  margin: 20px auto; 
+}
+
+.cart-item .remove-from-cart-button {
+  background-color: rgb(51, 51, 139);
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px;
+  width: 100%;
+}
+
+.cart-item .remove-from-cart-button:hover {
+  background-color: #4444cc;
+}
+
 @media (max-width: 768px) {
   header img {
     height: auto;
@@ -184,6 +240,27 @@ header input[type="password"] {
   header a.button {
     padding: 8px 16px;
     font-size: 14px;
+  }
+  
+  .gotobuttons {  
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-right: 0;  
+    margin-top: 20px;
+  }
+
+  .gotobuttons .button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-top: 20px;
+    font-size: 18px;
+    padding: 15px 30px;
+    margin: 10px;
+    text-align: center;
   }
 
   .secondary-header {
